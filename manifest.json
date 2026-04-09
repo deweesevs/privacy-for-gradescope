@@ -1,5 +1,5 @@
 {
-	"manifest_version": 2,
+	"manifest_version": 3,
 	"name": "Privacy, for Gradescope",
 	"version": "1.0",
 	"description": "Adds privacy functionality to Gradescope.",
@@ -11,7 +11,7 @@
 	"permissions": [
 		"storage"
 	],
-	"browser_action": {
+	"action": {
 		"default_icon": {
 			"48": "icons/icon-48.png",
 			"96": "icons/icon-96.png"
@@ -25,5 +25,10 @@
 			"js": ["content.js"],
 			"css": ["content.css"]
 		}
-	]
+	],
+	"browser_specific_settings": {
+		"gecko": {
+			"id": "privacy-for-gradescope@local"
+		}
+	}
 }
