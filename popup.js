@@ -10,16 +10,13 @@
 	const modeRadios = document.querySelectorAll('input[name="mode"]');
 	const thresholdSetting = document.getElementById('threshold-setting');
 	const thresholdInput = document.getElementById('threshold-input');
-	const apparentToggle = document.getElementById('apparent-toggle');
-	const toggleApparentStatusText = document.getElementById('apptoggle-status-text');
 	const saveButton = document.getElementById('save-button');
 
 	// Default settings
 	const defaultSettings = {
 		enabled: true,
 		mode: 'always',
-		threshold: 70,
-		apparent: false
+		threshold: 70
 	};
 
   	// Load settings
@@ -31,10 +28,6 @@
 	  		enabledToggle.checked = settings.enabled !== false;
 			updateToggleText(toggleStatusText,enabledToggle.checked);
 			updateModeSettingsVisibility(enabledToggle.checked);
-
-
-	  		apparentToggle.checked = settings.apparent !== false;
-			updateToggleText(toggleApparentStatusText,apparentToggle.checked);
 	  		
 			// radio
 			const modeRadio = document.getElementById(`mode-${settings.mode}`);
@@ -88,13 +81,8 @@
 		updateModeSettingsVisibility(e.target.checked);
 	});
 
-	apparentToggle.addEventListener('change', (e) => {
-		updateToggleText(toggleApparentStatusText,e.target.checked);
-	});
-
 	function saveSettings() {
 		const isEnabled = enabledToggle.checked;
-		const isApparent  = apparentToggle.checked;
 		const selectedMode = document.querySelector('input[name="mode"]:checked').value;
 		const threshold = parseInt(thresholdInput.value, 10);
 
@@ -107,8 +95,7 @@
 		const settings = {
 			enabled: isEnabled,
 			mode: selectedMode,
-			threshold: threshold,
-			apparent: isApparent
+			threshold: threshold
 		};
 
 		storage.local.set({ settings }, () => {
