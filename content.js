@@ -6,7 +6,7 @@
 		enabled: true,
 		mode: 'always', // always, threshold
 		threshold: 70,
-		apparent:true
+		apparent: false
 	};
 
 	// Load settings
