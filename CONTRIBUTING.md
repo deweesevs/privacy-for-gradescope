@@ -4,11 +4,11 @@ Hello! Thank you for your interest in this project! We appreciate every contribu
 
 ## Getting Started
 
-The documentation for getting started is very short. You can find it in the [README.md](https://github.com/ossd-s26/discrete-scores?tab=readme-ov-file).
+The documentation for getting started is very short. You can find it in the [README file](README.md).
 
 ## To Make a Contribution
 
-1. Begin by [making an issue](https://github.com/ossd-s26/discrete-scores/issues). Please use the issue template closest to your contribution:
+1. Begin by [making an issue](https://github.com/deweesevs/privacy-for-gradescope/issues). Please use the issue template closest to your contribution:
    * Feature Request
    * Bug Report
    * Task

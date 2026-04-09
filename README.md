@@ -1,6 +1,6 @@
 # Privacy, for Gradescope - A Firefox Extension
 
-This extension aims to add small privacy functionality to Gradescope.
+This extension hides Gradescope assignment scores until users choose to reveal them.
 
 ## Getting Started
 
@@ -18,7 +18,7 @@ This extension aims to add small privacy functionality to Gradescope.
 5. Click `Load Temporary Add-on...` (sorry, we're not signed).
 6. Navigate into the repository you cloned in Step 2, select `manifest.json` and click `Open`.
 
-You're good to go! Feel free to pin the extension to your Toolbar and configure your privacy settings by selecting the extension icon.
+You're good to go! Feel free to pin the extension to your Toolbar and configure your grade privacy settings by selecting the extension icon.
 
 ### For Developers
 
@@ -26,8 +26,8 @@ You're good to go! Feel free to pin the extension to your Toolbar and configure 
 
 ## Contributing
 
-To contribute to this project, please read our [contributing guidelines](https://github.com/ossd-s26/discrete-scores.git?tab=contributing-ov-file).
+To contribute to this project, please read our [contributing guidelines](CONTRIBUTING.md).
 
 ## Code of Conduct
 
-All contributors and community members must follow our [code of conduct](https://github.com/ossd-s26/discrete-scores/tree/updating-md?tab=coc-ov-file).
+All contributors and community members must follow our [code of conduct](CODE_OF_CONDUCT.md).

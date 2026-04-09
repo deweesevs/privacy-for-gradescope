@@ -2,8 +2,8 @@
 	"manifest_version": 3,
 	"name": "Privacy, for Gradescope",
 	"version": "1.0",
-	"description": "Adds privacy functionality to Gradescope.",
-	"homepage_url": "https://github.com/ossd-s26/discrete-scores",
+	"description": "Hides Gradescope scores until users choose to reveal them.",
+	"homepage_url": "https://github.com/deweesevs/privacy-for-gradescope",
 	"icons": {
 		"48": "icons/icon-48.png",
 		"96": "icons/icon-96.png"
@@ -28,7 +28,11 @@
 	],
 	"browser_specific_settings": {
 		"gecko": {
-			"id": "privacy-for-gradescope@local"
+			"id": "privacy-for-gradescope@extension",
+			"data_collection_permissions": {
+				"required": ["none"],
+				"optional": []
+			}
 		}
 	}
 }
