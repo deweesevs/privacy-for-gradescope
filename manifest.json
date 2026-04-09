@@ -1,6 +1,6 @@
 {
 	"manifest_version": 2,
-	"name": "Gradescope Discrete Scores",
+	"name": "Privacy, for Gradescope",
 	"version": "1.0",
 	"description": "Adds privacy functionality to Gradescope.",
 	"homepage_url": "https://github.com/ossd-s26/discrete-scores",
@@ -17,7 +17,7 @@
 			"96": "icons/icon-96.png"
 		},
 		"default_popup": "popup.html",
-    	"default_title": "Gradescope Discrete Scores Settings"
+    	"default_title": "Privacy, for Gradescope Settings"
 	},
 	"content_scripts": [
 		{

@@ -1,4 +1,4 @@
-# Gradescope Privacy Extension for Firefox
+# Privacy, for Gradescope - A Firefox Extension
 
 This extension aims to add small privacy functionality to Gradescope.
 
