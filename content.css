@@ -51,33 +51,3 @@
     font-weight: 700;
     color: #708090; /* Emphasize the grade */
 }
-
-.gs-discrete-drop-button {
-    background: #f44336;
-    color: white;
-    border: none;
-    width: 18px;
-    height: 18px;
-    border-radius: 20%;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
-    line-height: 18px;
-    text-align: center;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-    margin-left: 8px;
-    vertical-align: middle; /* Align with the other button */
-}
-
-.gs-discrete-drop-button:hover {
-    opacity: 0.8;
-}
-
-.gs-discrete-drop-button.active {
-    background: #4CAF50; /* Green */
-}
-
-.gs-discrete-score-value.gs-discrete-dropped {
-    text-decoration: line-through;
-    opacity: 0.6;
-}
