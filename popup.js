@@ -19,7 +19,7 @@
 		enabled: true,
 		mode: 'always',
 		threshold: 70,
-		apparent: true
+		apparent: false
 	};
 
   	// Load settings
