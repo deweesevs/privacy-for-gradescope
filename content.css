@@ -81,24 +81,3 @@
     text-decoration: line-through;
     opacity: 0.6;
 }
-
-/* Editable score styles */
-.gs-discrete-numerator,
-.gs-discrete-denominator {
-    cursor: pointer;
-    text-decoration: underline dotted;
-}
-
-.gs-discrete-numerator:hover,
-.gs-discrete-denominator:hover {
-    background-color: #f0f0f0;
-}
-
-.gs-discrete-score-input {
-    width: 4em;
-    text-align: center;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    font-size: inherit;
-    font-family: inherit;
-}

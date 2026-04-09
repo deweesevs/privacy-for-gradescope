@@ -73,34 +73,27 @@
 
 		scoreElements.forEach(scoreElement => {
 			const wrapper = scoreElement.querySelector('.gs-discrete-overlay');
-			if (!wrapper) return;
-	
-			const isDropped = wrapper.getAttribute('data-gs-discrete-dropped') === 'true';
-			if (isDropped) return;
-	
-			const scoreDisplay = wrapper.querySelector('.gs-discrete-score-value');
-			if (!scoreDisplay) return;
-	
-			const numeratorEl = scoreDisplay.querySelector('.gs-discrete-numerator');
-			const denominatorEl = scoreDisplay.querySelector('.gs-discrete-denominator');
-	
-			if (numeratorEl && denominatorEl) {
-				const earned = parseFloat(numeratorEl.textContent);
-				const total = parseFloat(denominatorEl.textContent);
-	
-				if (!isNaN(earned) && !isNaN(total) && total > 0) {
-					totalEarned += earned;
-					totalPossible += total;
+			let scoreText;
+			let isDropped = false;
+
+			if (wrapper) {
+				isDropped = wrapper.getAttribute('data-gs-discrete-dropped') === 'true';
+				const scoreDisplay = wrapper.querySelector('.gs-discrete-score-value');
+				if (scoreDisplay) {
+					scoreText = scoreDisplay.textContent.trim();
 				}
 			} else {
-				// Fallback for non-editable scores or text-only scores
-				const scoreText = scoreDisplay.textContent.trim();
-				if (scoreText.match(/^-\s*\/\s*\d/)) return;
-				const scoreInfo = parseScore(scoreText);
-				if (scoreInfo && scoreInfo.total > 0) {
-					totalEarned += scoreInfo.earned;
-					totalPossible += scoreInfo.total;
-				}
+				scoreText = scoreElement.textContent.trim();
+			}
+
+			if (isDropped || !scoreText || scoreText.match(/^-\s*\/\s*\d/)) {
+				return;
+			}
+
+			const scoreInfo = parseScore(scoreText);
+			if (scoreInfo && scoreInfo.total > 0) {
+				totalEarned += scoreInfo.earned;
+				totalPossible += scoreInfo.total;
 			}
 		});
 
@@ -126,54 +119,6 @@
 		}
 	}
 
-	function makeEditable(element, scoreDisplay) {
-		// Prevent creating a new input if one already exists
-		if (scoreDisplay.querySelector('input')) {
-			return;
-		}
-	
-		const oldValue = element.textContent;
-		const input = document.createElement('input');
-		input.type = 'number';
-		input.className = 'gs-discrete-score-input';
-		input.value = oldValue;
-	
-		// Replace the span with the input
-		element.textContent = '';
-		element.appendChild(input);
-		input.focus();
-		input.select();
-	
-		const save = () => {
-			const newValue = input.value.trim();
-			// Restore the original value if the new value is empty or invalid
-			if (newValue === '' || isNaN(newValue)) {
-				element.removeChild(input);
-				element.textContent = oldValue;
-			} else {
-				element.removeChild(input);
-				element.textContent = newValue;
-				recalculateTotals();
-			}
-		};
-	
-		const cancel = () => {
-			element.removeChild(input);
-			element.textContent = oldValue;
-		};
-	
-		input.addEventListener('blur', save);
-		input.addEventListener('keydown', (e) => {
-			if (e.key === 'Enter') {
-				e.preventDefault();
-				save();
-			} else if (e.key === 'Escape') {
-				e.preventDefault();
-				cancel();
-			}
-		});
-	}
-
 	// Process score element
 	function processScoreElement(scoreElement) {
 		if (scoreElement.hasAttribute('data-gs-discrete-processed')) {
@@ -195,27 +140,7 @@
 		wrapper.className = 'gs-discrete-overlay';
 		const scoreDisplay = document.createElement('div');
 		scoreDisplay.className = 'gs-discrete-score-value';
-
-		if (scoreInfo) {
-			const numerator = document.createElement('span');
-			numerator.className = 'gs-discrete-numerator';
-			numerator.textContent = scoreInfo.earned;
-	
-			const separator = document.createElement('span');
-			separator.className = 'gs-discrete-separator';
-			separator.textContent = ' / ';
-	
-			const denominator = document.createElement('span');
-			denominator.className = 'gs-discrete-denominator';
-			denominator.textContent = scoreInfo.total;
-	
-			scoreDisplay.appendChild(numerator);
-			scoreDisplay.appendChild(separator);
-			scoreDisplay.appendChild(denominator);
-		} else {
-			scoreDisplay.textContent = scoreText;
-		}
-
+		scoreDisplay.textContent = scoreText; 
 		const toggleButton = createButton(shouldHide);
 		const dropButton = createDropButton();
 
@@ -258,13 +183,6 @@
 			}
 			
 			recalculateTotals();
-		});
-
-		// Click handler for making scores editable
-		scoreDisplay.addEventListener('click', (e) => {
-			if (e.target.classList.contains('gs-discrete-numerator') || e.target.classList.contains('gs-discrete-denominator')) {
-				makeEditable(e.target, scoreDisplay);
-			}
 		});
 	}
 
