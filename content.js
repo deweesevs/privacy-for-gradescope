@@ -47,12 +47,13 @@
 		return false;
 	}
 
-	// Create buttons
-	function createButton(isHidden) {
-		const button = document.createElement('button');
-		button.className = 'gs-discrete-button';
-		button.textContent = isHidden ? 'Show Grade' : 'Hide Grade';
-		return button;
+	// Match wrapper classes
+	function syncOverlayState(wrapper, scoreDisplay) {
+		const hidden = scoreDisplay.classList.contains('gs-discrete-hidden');
+		wrapper.classList.toggle('gs-discrete-state-hidden', hidden);
+		wrapper.classList.toggle('gs-discrete-state-visible', !hidden);
+		wrapper.setAttribute('aria-pressed', hidden ? 'false' : 'true');
+		wrapper.setAttribute('aria-label', hidden ? 'Show grade' : 'Hide grade');
 	}
 
 	// Process score element
@@ -71,33 +72,52 @@
 
 		scoreElement.setAttribute('data-gs-discrete-processed', 'true');
 
-		// Build UI elems
+		// Overlay wrapper with blur
 		const wrapper = document.createElement('div');
 		wrapper.className = 'gs-discrete-overlay';
+		wrapper.setAttribute('role', 'button');
+		wrapper.setAttribute('tabindex', '0');
+
 		const scoreDisplay = document.createElement('div');
 		scoreDisplay.className = 'gs-discrete-score-value';
-		scoreDisplay.textContent = scoreText; 
-		const button = createButton(shouldHide);
+		scoreDisplay.textContent = scoreText;
+
+		// Overlay hint labels
+		const hint = document.createElement('div');
+		hint.className = 'gs-discrete-hint';
+		hint.setAttribute('aria-hidden', 'true');
+		const hintShow = document.createElement('span');
+		hintShow.className = 'gs-discrete-hint-show';
+		hintShow.textContent = 'Show';
+		const hintHide = document.createElement('span');
+		hintHide.className = 'gs-discrete-hint-hide';
+		hintHide.textContent = 'Hide';
+		hint.appendChild(hintShow);
+		hint.appendChild(hintHide);
 
 		if (shouldHide) {
 			scoreDisplay.classList.add('gs-discrete-hidden');
 		}
+		syncOverlayState(wrapper, scoreDisplay);
 
 		scoreElement.innerHTML = '';
 		wrapper.appendChild(scoreDisplay);
-		wrapper.appendChild(button);
+		wrapper.appendChild(hint);
 		scoreElement.appendChild(wrapper);
 
-		// Click handler
-		button.addEventListener('click', (e) => {
+		// Toggle blur and refresh overlay state
+		function onActivate(e) {
 			e.preventDefault();
 			e.stopPropagation();
-	      
-			const isCurrentlyHidden = scoreDisplay.classList.contains('gs-discrete-hidden');
 			scoreDisplay.classList.toggle('gs-discrete-hidden');
-	      
-			const newHiddenState = !isCurrentlyHidden;
-			button.textContent = newHiddenState ? 'Show Grade' : 'Hide Grade';
+			syncOverlayState(wrapper, scoreDisplay);
+		}
+
+		wrapper.addEventListener('click', onActivate);
+		wrapper.addEventListener('keydown', (e) => {
+			if (e.key === 'Enter' || e.key === ' ') {
+				onActivate(e);
+			}
 		});
 	}
 
