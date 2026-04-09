@@ -34,20 +34,3 @@
 .gs-discrete-button:hover {
 	opacity: 0.8;
 }
-
-/* Cumulative Grade Display */
-.gs-cumulative-grade {
-    margin-top: 5px;
-    padding: 10px;
-    background: #ffffff;
-    border-radius: 8px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    text-align: left;
-    font-size: 16px;
-    font-weight: 600;
-}
-
-.gs-cumulative-grade span {
-    font-weight: 700;
-    color: #708090; /* Emphasize the grade */
-}

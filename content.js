@@ -6,8 +6,7 @@
 		enabled: true,
 		mode: 'always', // always, threshold
 		threshold: 70,
-		apparent:true,
-		cumulative: false
+		apparent:true
 	};
 
 	// Load settings
@@ -107,44 +106,7 @@
 		const url = window.location.href;
 		if (url.match(/\/courses\/\d+$/)) {
 			const scoreElements = document.querySelectorAll('.submissionStatus--score');
-            
-            let totalEarned = 0;
-            let totalPossible = 0;
-            let gradedAssignmentsCount = 0;
-
-            scoreElements.forEach(scoreElement => {
-                const scoreText = scoreElement.textContent.trim();
-                // Skip ungraded assignments for cumulative calculation
-                if (!scoreText.match(/^-\s*\/\s*\d/)) {
-                    const scoreInfo = parseScore(scoreText);
-                    if (scoreInfo && scoreInfo.total > 0) {
-                        totalEarned += scoreInfo.earned;
-                        totalPossible += scoreInfo.total;
-                        gradedAssignmentsCount++;
-                    }
-                }
-            });
-
-            // Process individual score elements for hiding/showing
 			scoreElements.forEach(el => processScoreElement(el));
-
-            let cumulativeGradeContainer = document.querySelector('.gs-cumulative-grade');
-            if (settings.cumulative && totalPossible > 0) {
-                const cumulativePercentage = (totalEarned / totalPossible) * 100;
-                const cumulativeText = `Cumulative Grade: <span>${cumulativePercentage.toFixed(2)}%</span> (${totalEarned.toFixed(2)} / ${totalPossible.toFixed(2)})`;
-
-                if (!cumulativeGradeContainer) {
-                    const contentWrapper = document.querySelector('.l-content');
-                    cumulativeGradeContainer = document.createElement('div');
-                    cumulativeGradeContainer.className = 'gs-cumulative-grade';
-                    contentWrapper.appendChild(cumulativeGradeContainer);
-                }
-                cumulativeGradeContainer.innerHTML = cumulativeText;
-                cumulativeGradeContainer.style.display = '';
-            } else if (cumulativeGradeContainer) {
-                cumulativeGradeContainer.remove(); 
-            }
-
 			if (settings.apparent) {
 	            const warns = document.querySelectorAll(`
 	                .submissionStatus-warning .submissionStatus--text, 

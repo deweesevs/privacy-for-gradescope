@@ -12,8 +12,6 @@
 	const thresholdInput = document.getElementById('threshold-input');
 	const apparentToggle = document.getElementById('apparent-toggle');
 	const toggleApparentStatusText = document.getElementById('apptoggle-status-text');
-	const cumulativeToggle = document.getElementById('cumulative-toggle');
-	const toggleCumulativeStatusText = document.getElementById('cumtoggle-status-text');
 	const saveButton = document.getElementById('save-button');
 
 	// Default settings
@@ -21,8 +19,7 @@
 		enabled: true,
 		mode: 'always',
 		threshold: 70,
-		apparent: true,
-		cumulative: false
+		apparent: true
 	};
 
   	// Load settings
@@ -38,9 +35,6 @@
 
 	  		apparentToggle.checked = settings.apparent !== false;
 			updateToggleText(toggleApparentStatusText,apparentToggle.checked);
-
-			cumulativeToggle.checked = settings.cumulative !== false;
-			updateToggleText(toggleCumulativeStatusText,cumulativeToggle.checked);
 	  		
 			// radio
 			const modeRadio = document.getElementById(`mode-${settings.mode}`);
@@ -98,14 +92,9 @@
 		updateToggleText(toggleApparentStatusText,e.target.checked);
 	});
 
-	cumulativeToggle.addEventListener('change', (e) => {
-		updateToggleText(toggleCumulativeStatusText,e.target.checked);
-	});
-
 	function saveSettings() {
 		const isEnabled = enabledToggle.checked;
 		const isApparent  = apparentToggle.checked;
-		const isCumulative = cumulativeToggle.checked;
 		const selectedMode = document.querySelector('input[name="mode"]:checked').value;
 		const threshold = parseInt(thresholdInput.value, 10);
 
@@ -119,8 +108,7 @@
 			enabled: isEnabled,
 			mode: selectedMode,
 			threshold: threshold,
-			apparent: isApparent,
-			cumulative: isCumulative
+			apparent: isApparent
 		};
 
 		storage.local.set({ settings }, () => {
