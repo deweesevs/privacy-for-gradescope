@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Privacy, for Gradescope",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "Hides Gradescope scores until users choose to reveal them.",
   "homepage_url": "https://github.com/deweesevs/privacy-for-gradescope",
   "icons": {
