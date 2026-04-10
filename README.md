@@ -9,20 +9,15 @@ This extension hides Gradescope assignment scores until users choose to reveal t
 - Firefox
 - Git
 
-### For Users
+### For Developers
 
 1. [Download and install Firefox](https://www.firefox.com/) if you have not already.
 2. Open a terminal and navigate to your desired download directory.
 3. run `git clone https://github.com/deweesevs/privacy-for-gradescope.git`
 4. Open Firefox and navigate to `about:debugging` (paste this into your URL bar.)
-5. Click `Load Temporary Add-on...` (sorry, we're not signed).
+5. Click `Load Temporary Add-on...`.
 6. Navigate into the repository you cloned in Step 2, select `manifest.json` and click `Open`.
-
-You're good to go! Feel free to pin the extension to your Toolbar and configure your grade privacy settings by selecting the extension icon.
-
-### For Developers
-
-1. Follow the same steps as before, but make sure to click `Reload` on `about:debugging` to preview your changes.
+7. To preview changes, make sure to click `Reload` on `about:debugging`.
 
 ## Contributing
 
