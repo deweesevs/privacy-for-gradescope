@@ -1,38 +1,36 @@
 {
-	"manifest_version": 3,
-	"name": "Privacy, for Gradescope",
-	"version": "1.0",
-	"description": "Hides Gradescope scores until users choose to reveal them.",
-	"homepage_url": "https://github.com/deweesevs/privacy-for-gradescope",
-	"icons": {
-		"48": "icons/icon-48.png",
-		"96": "icons/icon-96.png"
-	},
-	"permissions": [
-		"storage"
-	],
-	"action": {
-		"default_icon": {
-			"48": "icons/icon-48.png",
-			"96": "icons/icon-96.png"
-		},
-		"default_popup": "popup.html",
-    	"default_title": "Privacy, for Gradescope Settings"
-	},
-	"content_scripts": [
-		{
-			"matches": ["https://www.gradescope.com/courses/*"],
-			"js": ["content.js"],
-			"css": ["content.css"]
-		}
-	],
-	"browser_specific_settings": {
-		"gecko": {
-			"id": "privacy-for-gradescope@extension",
-			"data_collection_permissions": {
-				"required": ["none"],
-				"optional": []
-			}
-		}
-	}
+  "manifest_version": 3,
+  "name": "Privacy, for Gradescope",
+  "version": "1.0",
+  "description": "Hides Gradescope scores until users choose to reveal them.",
+  "homepage_url": "https://github.com/deweesevs/privacy-for-gradescope",
+  "icons": {
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png"
+  },
+  "permissions": ["storage"],
+  "action": {
+    "default_icon": {
+      "48": "icons/icon-48.png",
+      "96": "icons/icon-96.png"
+    },
+    "default_popup": "popup.html",
+    "default_title": "Privacy, for Gradescope Settings"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.gradescope.com/courses/*"],
+      "js": ["content.js"],
+      "css": ["content.css"]
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "privacy-for-gradescope@extension",
+      "data_collection_permissions": {
+        "required": ["none"],
+        "optional": []
+      }
+    }
+  }
 }
