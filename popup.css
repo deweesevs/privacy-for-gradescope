@@ -1,3 +1,11 @@
+:root {
+	--popup-accent: #0ea5e9;
+	--popup-accent-strong: #0284c7;
+	--popup-accent-deep: #0369a1;
+	--popup-accent-soft: rgba(14, 165, 233, 0.12);
+	--popup-accent-border: rgba(14, 165, 233, 0.22);
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -11,7 +19,7 @@ body {
 	font-size: 14px;
 	line-height: 1.35;
 	color: #333;
-	background: #f5f5f5;
+	background: #f6fbff;
 }
 
 .header {
@@ -21,7 +29,7 @@ body {
 h1 {
 	font-size: 17px;
 	font-weight: 600;
-	color: #2c3e50;
+	color: var(--popup-accent-deep);
 	margin-bottom: 2px;
 }
 
@@ -36,6 +44,7 @@ h1 {
 	padding: 10px;
 	margin-bottom: 8px;
 	box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+	border: 1px solid var(--popup-accent-border);
 }
 
 .setting-label {
@@ -56,7 +65,11 @@ h1 {
 	padding: 4px 6px;
 	border-radius: 4px;
 	cursor: pointer;
-	transition: background 0.2s;
+	transition: background 0.2s, color 0.2s;
+}
+
+.radio-option:hover {
+	background: var(--popup-accent-soft);
 }
 
 .radio-option input[type="radio"] {
@@ -123,7 +136,8 @@ h1 {
 }
 
 input:checked + .toggle-slider {
-	background-color: #708090;
+	background-color: var(--popup-accent-strong);
+	box-shadow: 0 0 0 1px rgba(14, 165, 233, 0.18);
 }
 
 input:checked + .toggle-slider:before {
@@ -151,9 +165,9 @@ input:checked + .toggle-slider:before {
 .threshold-setting {
 	margin-top: 8px;
 	padding: 10px;
-	background: #f8f9fa;
+	background: rgba(56, 189, 248, 0.08);
 	border-radius: 4px;
-	border-left: 3px solid #708090;
+	border-left: 3px solid var(--popup-accent);
 }
 
 .threshold-setting.disabled {
@@ -178,25 +192,27 @@ input[type="number"] {
 
 input[type="number"]:focus {
 	outline: none;
-	border-color: #4CAF50;
+	border-color: var(--popup-accent-strong);
+	box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.18);
 }
 
 .save-button {
 	width: 100%;
 	padding: 9px;
-	background: #708090;
+	background: var(--popup-accent-strong);
 	color: white;
 	border: none;
 	border-radius: 4px;
 	font-size: 14px;
 	font-weight: 600;
 	cursor: pointer;
-	transition: background 0.2s;
-	box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+	transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+	box-shadow: none;
 }
 
 .save-button:hover {
-	opacity: 0.8;
+	opacity: 0.92;
+	box-shadow: none;
 }
 
 .save-button:active {
