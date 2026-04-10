@@ -1,111 +1,111 @@
-(function() {
-	'use strict';
+(function () {
+  "use strict";
 
-	const storage = browser.storage;
+  const storage = browser.storage;
 
- 	// DOM
-	const enabledToggle = document.getElementById('enabled-toggle');
-	const toggleStatusText = document.getElementById('toggle-status-text');
-	const modeSettings = document.getElementById('mode-settings');
-	const modeRadios = document.querySelectorAll('input[name="mode"]');
-	const thresholdSetting = document.getElementById('threshold-setting');
-	const thresholdInput = document.getElementById('threshold-input');
-	const saveButton = document.getElementById('save-button');
+  // DOM
+  const enabledToggle = document.getElementById("enabled-toggle");
+  const toggleStatusText = document.getElementById("toggle-status-text");
+  const modeSettings = document.getElementById("mode-settings");
+  const modeRadios = document.querySelectorAll('input[name="mode"]');
+  const thresholdSetting = document.getElementById("threshold-setting");
+  const thresholdInput = document.getElementById("threshold-input");
+  const saveButton = document.getElementById("save-button");
 
-	// Default settings
-	const defaultSettings = {
-		enabled: true,
-		mode: 'always',
-		threshold: 70
-	};
+  // Default settings
+  const defaultSettings = {
+    enabled: true,
+    mode: "always",
+    threshold: 70,
+  };
 
-  	// Load settings
-	function loadSettings() {
-		storage.local.get(['settings'], (result) => {
-			const settings = result.settings || defaultSettings;
-	  
-			// toggle
-	  		enabledToggle.checked = settings.enabled !== false;
-			updateToggleText(toggleStatusText,enabledToggle.checked);
-			updateModeSettingsVisibility(enabledToggle.checked);
-	  		
-			// radio
-			const modeRadio = document.getElementById(`mode-${settings.mode}`);
-			if (modeRadio) {
-				modeRadio.checked = true;
-			}
-	  		
-			// Set threshold
-			thresholdInput.value = settings.threshold;
-	  		
-			// Threshold visibility
-			updateThresholdVisibility(settings.mode);
-		});
-	}
+  // Load settings
+  function loadSettings() {
+    storage.local.get(["settings"], (result) => {
+      const settings = result.settings || defaultSettings;
 
-	// Update threshold visibility
-	function updateThresholdVisibility(mode) {
-		if (mode === 'threshold') {
-			thresholdSetting.classList.remove('disabled');
-		}
-		else {
-			thresholdSetting.classList.add('disabled');
-		}
-	}
+      // toggle
+      enabledToggle.checked = settings.enabled !== false;
+      updateToggleText(toggleStatusText, enabledToggle.checked);
+      updateModeSettingsVisibility(enabledToggle.checked);
 
-	// Update toggle status text
-	function updateToggleText(target,isEnabled) {
-		target.textContent = isEnabled ? 'Enabled' : 'Disabled';
-	}
+      // radio
+      const modeRadio = document.getElementById(`mode-${settings.mode}`);
+      if (modeRadio) {
+        modeRadio.checked = true;
+      }
 
-	// Update mode settings visibility based on enabled state
-	function updateModeSettingsVisibility(isEnabled) {
-		if (isEnabled) {
-			modeSettings.classList.remove('disabled');
-		}
-		else {
-			modeSettings.classList.add('disabled');
-		}
-	}
+      // Set threshold
+      thresholdInput.value = settings.threshold;
 
-	// Listen for mode changes
-	modeRadios.forEach(radio => {
-		radio.addEventListener('change', (e) => {
-			updateThresholdVisibility(e.target.value);
-		});
-	});
+      // Threshold visibility
+      updateThresholdVisibility(settings.mode);
+    });
+  }
 
-	// Listen for toggle changes
-	enabledToggle.addEventListener('change', (e) => {
-		updateToggleText(toggleStatusText,e.target.checked);
-		updateModeSettingsVisibility(e.target.checked);
-	});
+  // Update threshold visibility
+  function updateThresholdVisibility(mode) {
+    if (mode === "threshold") {
+      thresholdSetting.classList.remove("disabled");
+    } else {
+      thresholdSetting.classList.add("disabled");
+    }
+  }
 
-	function saveSettings() {
-		const isEnabled = enabledToggle.checked;
-		const selectedMode = document.querySelector('input[name="mode"]:checked').value;
-		const threshold = parseInt(thresholdInput.value, 10);
+  // Update toggle status text
+  function updateToggleText(target, isEnabled) {
+    target.textContent = isEnabled ? "Enabled" : "Disabled";
+  }
 
-		// Check threshold
-		if (isNaN(threshold) || threshold < 0 || threshold > 100) {
-			showStatus('Please enter a valid threshold between 0 and 100', false);
-			return;
-		}
+  // Update mode settings visibility based on enabled state
+  function updateModeSettingsVisibility(isEnabled) {
+    if (isEnabled) {
+      modeSettings.classList.remove("disabled");
+    } else {
+      modeSettings.classList.add("disabled");
+    }
+  }
 
-		const settings = {
-			enabled: isEnabled,
-			mode: selectedMode,
-			threshold: threshold
-		};
+  // Listen for mode changes
+  modeRadios.forEach((radio) => {
+    radio.addEventListener("change", (e) => {
+      updateThresholdVisibility(e.target.value);
+    });
+  });
 
-		storage.local.set({ settings }, () => {
-			showStatus('Settings saved! Reload Gradescope to apply changes.', true);
-		});
-	}
+  // Listen for toggle changes
+  enabledToggle.addEventListener("change", (e) => {
+    updateToggleText(toggleStatusText, e.target.checked);
+    updateModeSettingsVisibility(e.target.checked);
+  });
 
-	// Listeners
-	saveButton.addEventListener('click', saveSettings);
+  function saveSettings() {
+    const isEnabled = enabledToggle.checked;
+    const selectedMode = document.querySelector(
+      'input[name="mode"]:checked',
+    ).value;
+    const threshold = parseInt(thresholdInput.value, 10);
 
-	// Initialize
-	loadSettings();
+    // Check threshold
+    if (isNaN(threshold) || threshold < 0 || threshold > 100) {
+      showStatus("Please enter a valid threshold between 0 and 100", false);
+      return;
+    }
+
+    const settings = {
+      enabled: isEnabled,
+      mode: selectedMode,
+      threshold: threshold,
+    };
+
+    storage.local.set({ settings }, () => {
+      showStatus("Settings saved! Reload Gradescope to apply changes.", true);
+    });
+  }
+
+  // Listeners
+  saveButton.addEventListener("click", saveSettings);
+
+  // Initialize
+  loadSettings();
 })();

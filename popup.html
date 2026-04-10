@@ -1,64 +1,86 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
- 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Privacy, for Gradescope Settings</title>
-	<link rel="stylesheet" href="popup.css">
-</head>
-<body>
-	<div class="header">
-		<h1>Privacy, for Gradescope Settings</h1>
-		<div class="subtitle">Configure grade hiding preferences.</div>
-	</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy, for Gradescope Settings</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="header">
+      <h1>Privacy, for Gradescope Settings</h1>
+      <div class="subtitle">Configure grade hiding preferences.</div>
+    </div>
 
-	<div class="settings-group">
-		<div class="setting-label">Grade Blur Toggle</div>
-		<div class="toggle-container">
-			<label class="toggle-switch">
-				<input type="checkbox" id="enabled-toggle" checked>
-				<span class="toggle-slider"></span>
-			</label>
-			<label for="enabled-toggle" class="toggle-label">
-				<span id="toggle-status-text">Enabled</span>
-			</label>
-		</div>
-		<div class="toggle-description">
-			All grades are visible when the grade blur is disabled.
-		</div>
-	</div>
+    <div class="settings-group">
+      <div class="setting-label">Grade Blur Toggle</div>
+      <div class="toggle-container">
+        <label class="toggle-switch">
+          <input type="checkbox" id="enabled-toggle" checked />
+          <span class="toggle-slider"></span>
+        </label>
+        <label for="enabled-toggle" class="toggle-label">
+          <span id="toggle-status-text">Enabled</span>
+        </label>
+      </div>
+      <div class="toggle-description">
+        All grades are visible when the grade blur is disabled.
+      </div>
+    </div>
 
-	<div class="settings-group" id="mode-settings">
-		<div class="setting-label">Grade Hiding Mode</div>
-		<div class="radio-group">
-			<div class="radio-option">
-				<input type="radio" id="mode-always" name="mode" value="always" checked>
-				<label for="mode-always">Always hide all grades</label>
-			</div>
-			<div class="radio-description">
-				All grades are hidden by default. Click buttons to reveal.
-			</div>
+    <div class="settings-group" id="mode-settings">
+      <div class="setting-label">Grade Hiding Mode</div>
+      <div class="radio-group">
+        <div class="radio-option">
+          <input
+            type="radio"
+            id="mode-always"
+            name="mode"
+            value="always"
+            checked
+          />
+          <label for="mode-always">Always hide all grades</label>
+        </div>
+        <div class="radio-description">
+          All grades are hidden by default. Click buttons to reveal.
+        </div>
 
-			<div class="radio-option">
-				<input type="radio" id="mode-threshold" name="mode" value="threshold">
-				<label for="mode-threshold">Hide grades below threshold</label>
-			</div>
-			<div class="radio-description">
-				Automatically hides grades below a certain percentage.
-			</div>
-		</div>
+        <div class="radio-option">
+          <input
+            type="radio"
+            id="mode-threshold"
+            name="mode"
+            value="threshold"
+          />
+          <label for="mode-threshold">Hide grades below threshold</label>
+        </div>
+        <div class="radio-description">
+          Automatically hides grades below a certain percentage.
+        </div>
+      </div>
 
-		<div class="threshold-setting" id="threshold-setting">
-			<label for="threshold-input" class="setting-label" style="margin-bottom: 4px;">Hide grades below:</label>
-			<div class="threshold-input-group">
-				<input type="number" id="threshold-input" min="0" max="100" value="70">
-				<span>%</span>
-			</div>
-		</div>
-	</div>
+      <div class="threshold-setting" id="threshold-setting">
+        <label
+          for="threshold-input"
+          class="setting-label"
+          style="margin-bottom: 4px"
+          >Hide grades below:</label
+        >
+        <div class="threshold-input-group">
+          <input
+            type="number"
+            id="threshold-input"
+            min="0"
+            max="100"
+            value="70"
+          />
+          <span>%</span>
+        </div>
+      </div>
+    </div>
 
-	<button class="save-button" id="save-button">Save Settings</button>
+    <button class="save-button" id="save-button">Save Settings</button>
 
-	<script src="popup.js"></script>
-</body>
+    <script src="popup.js"></script>
+  </body>
 </html>

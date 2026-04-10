@@ -6,8 +6,8 @@ This extension hides Gradescope assignment scores until users choose to reveal t
 
 ### Requirements
 
-* Firefox
-* Git
+- Firefox
+- Git
 
 ### For Users
 
