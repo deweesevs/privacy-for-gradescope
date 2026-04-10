@@ -14,11 +14,16 @@ The documentation for getting started is very short. You can find it in the [REA
    - Task
 2. Fork the repository.
 3. Clone your fork.
-4. Create a branch with a descriptive name.
-5. Make your changes on that branch on your fork and push them to remote.
-6. Create a pull request on the main repository.
+4. Create a branch with a descriptive name and switch to it.
+5. Make your changes on that branch.
+6. Install **pre-commit** if you have not already.
+   ```
+   brew install pre-commit
+   ```
+7. Commit and push your changes.
+8. Create a pull request on the main repository.
    - Provide as much detail as possible.
    - All pull requests must include `Closes #X`, where `X` is the issue number from Step 1.
-7. Wait for a review and feedback.
+9. Wait for a review and feedback.
 
 Once your work is merged, feel free to delete your fork.
